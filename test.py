@@ -151,8 +151,8 @@ def next_song():
     time_start.config(text='00:00')
     my_slider.config(value=0)
     global current_song
-    if not current_song.next:
-        current_song = playlist.head
+    if current_song == listsong.tail:
+        current_song = current_song.next
     else:
         current_song = current_song.next
     pygame.mixer.music.load(current_song.data.path)
@@ -160,9 +160,8 @@ def next_song():
 
 def prev_song():
     global current_song
-    if not current_song.prev:
-        return
-    
+    if current_song == listsong.head:
+        return current_song.prev
     current_song = current_song.prev
     time_start.config(text='00:00')
     my_slider.config(value=0)
@@ -182,20 +181,21 @@ gray = '#121212'
 fg_str = "#f3f3f3"
 leave_colo = '#2a2a2a'
 
-def cr(lit, frame_pa, bg, fg_str, leave_colo, canvas=None, scrollbar=None):
+def cr(lit,frame_pa,bg,fg_str,leave_colo):
     current_song_info = lit.head
     row_x = 0
+
+
     while current_song_info:
-        make_tale(frame_pa, current_song_info, bg, fg_str, leave_colo, row_x)
+        # Tạo music_info
+        make_tale(frame_pa,current_song_info,bg,fg_str,leave_colo,row_x)
+
         row_x += 1
+        if current_song_info is playlist.tail:
+            break
         current_song_info = current_song_info.next
 
-    if canvas and scrollbar:
-        canvas.update_idletasks()
-        canvas.config(scrollregion=canvas.bbox("all"))
-        canvas.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=canvas.yview)
-
+        
 listsong = List_song()
 for file in os.listdir('list_song'):
     full_path = os.path.join('list_song', file)
