@@ -88,6 +88,9 @@ def play(event=None, now=None):
         current_song = now
         pygame.mixer.music.load(current_song.data.path)
         pygame.mixer.music.play(loops=0)
+	time_start.config(text='00:00')
+    	my_slider.config(value=0)
+        
         time_start.config(text='00:00')
         my_slider.config(value=0)
 
