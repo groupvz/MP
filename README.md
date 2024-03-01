@@ -23,7 +23,7 @@ To run the app: python demo.py
 
 ## Preview
 
-![App Preview](preview.png)
+![app_preview](https://github.com/groupvz/MP/assets/108646783/dadae1d0-ef65-4812-b95c-19ccf0d65fa3)
 
 ## To Do
 
