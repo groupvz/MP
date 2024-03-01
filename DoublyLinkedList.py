@@ -42,3 +42,57 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail = new_node
         self.lenght += 1 
+    def addAfter(self, node, data_to_add):
+        node_to_add = Node(data_to_add)
+        node_to_add.prev = node
+        node_to_add.next = node.next
+        node.next.prev = node_to_add
+        node.next = node_to_add
+        if node is self.tail:
+            node_to_add.next = self.head
+            self.head.prev = node_to_add
+            self.tail = node_to_add
+        return node_to_add
+
+        
+
+    def changenode(self, node, node_to_change):
+        if node_to_change is self.head:
+            self.head = node_to_change.next
+            node_to_change.next.prev = self.tail
+            self.tail.next = self.head
+        elif node_to_change is self.tail:
+            self.tail = node_to_change.prev
+            node_to_change.prev.next = self.head
+            self.head.prev = self.tail
+        else:
+            node_to_change.prev.next = node_to_change.next
+            node_to_change.next.prev = node_to_change.prev
+                
+        node_to_change.prev = node
+        node_to_change.next = node.next
+        node.next.prev = node_to_change
+        node.next = node_to_change
+        if node is self.tail:
+            node_to_change.next = self.head
+            self.head.prev = node_to_change
+            self.tail = node_to_change
+
+
+
+    def delete(self,node):  
+        if node is self.head:
+            self.head = node.next
+            node.next.prev = self.tail
+            self.tail.next = self.head
+            del node
+        elif node is self.tail:
+            self.tail = node.prev
+            node.prev.next = self.head
+            self.head.prev = self.tail
+            del node
+        else:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            del node
+
