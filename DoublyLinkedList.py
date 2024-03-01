@@ -15,14 +15,14 @@ class Node:
         self.next = None
         self.prev = None
 
-class List_song:
+class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None 
         self.lenght = 0 
 
     def copy(self):
-        new_list = List_song()
+        new_list = DoublyLinkedList()
         current = self.head
         while current:
             new_list.addToTail(current.data.path)

@@ -1,7 +1,7 @@
 from tkinter import *
 import pygame
 from tkinter import filedialog
-from Stru import *
+from DoublyLinkedList import *
 import time
 from mutagen.mp3 import MP3
 import tkinter.ttk as ttk
@@ -199,7 +199,7 @@ def cr(lit, frame_pa, bg, fg_str, leave_colo, canvas=None, scrollbar=None):
         canvas.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=canvas.yview)
 
-listsong = List_song()
+listsong = DoublyLinkedList()
 for file in os.listdir('list_song'):
     full_path = os.path.join('list_song', file)
     _, file_extension = os.path.splitext(full_path)

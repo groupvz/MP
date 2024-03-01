@@ -1,7 +1,7 @@
 from tkinter import *
 import pygame
 from tkinter import filedialog
-from Stru import *
+from MP.DoublyLinkedList import *
 import time
 from mutagen.mp3 import MP3
 import tkinter.ttk as ttk
