@@ -283,7 +283,7 @@ def show_listbox(event, song):
                 listbox_window.destroy()
     listbox.bind("<Button-1>", lambda event: on_select(event, song))
 # Create a linked list to hold the playlist
-listsong = List_song()
+listsong = DoublyLinkedList()
 for file in os.listdir('list_song'):
     full_path = os.path.join('list_song', file)
     _, file_extension = os.path.splitext(full_path)
