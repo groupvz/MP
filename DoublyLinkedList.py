@@ -1,5 +1,6 @@
 from mutagen.mp3 import MP3
 
+#Class to store the song's information
 class Song:
     def __init__(self,file):
         self.path = str(file)
@@ -9,12 +10,14 @@ class Song:
         self.album = str(audio["TALB"])
         self.duration = audio.info.length
 
+#Each song is a node that contains data and a pointer to the next and previous node
 class Node:
     def __init__(self,data):
         self.data = Song(data)
         self.next = None
         self.prev = None
 
+#Doubly linked list to store the songs
 class DoublyLinkedList:
     def __init__(self):
         self.head = None

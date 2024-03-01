@@ -1,0 +1,8 @@
+References:
+
+1. Doubly Circular Linked List: askpython.com/python/examples/doubly-circular-linked-list
+
+2. Songs installed: NhacCuaTui.com
+
+3. ChatGPT, GitHub Copilot 
+
