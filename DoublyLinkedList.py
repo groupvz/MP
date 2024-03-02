@@ -22,7 +22,7 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None 
-        self.lenght = 0 
+        self.length = 0 
 
     def copy(self):
         new_list = DoublyLinkedList()
@@ -41,7 +41,8 @@ class DoublyLinkedList:
             self.tail.next = new_node
             new_node.prev = self.tail
             self.tail = new_node
-        self.lenght += 1 
+        self.length += 1 
+        
     def addAfter(self, node, data_to_add):
         node_to_add = Node(data_to_add)
         node_to_add.prev = node
@@ -96,3 +97,13 @@ class DoublyLinkedList:
             node.next.prev = node.prev
             del node
 
+if __name__ == "__main__":
+    import os
+    listsong = DoublyLinkedList()
+    for file in os.listdir("Music"):
+        full_path = os.path.join("Music", file)
+        _, file_extension = os.path.splitext(full_path)
+        if os.path.isfile(full_path) and file_extension == ".mp3":
+            listsong.addToTail(full_path)
+    print(listsong.head.data.title)
+    print(listsong.tail.data.title)

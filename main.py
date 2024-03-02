@@ -316,8 +316,9 @@ def next_song():
 def prev_song():
     global current_song
     if not current_song.prev:
-        return
-    current_song = current_song.prev
+        current_song = playlist.tail
+    else:
+        current_song = current_song.prev
     time_start.config(text="00:00")
     my_slider.config(value=0)
     pygame.mixer.music.load(current_song.data.path)
