@@ -251,6 +251,7 @@ def play(event=None, now=None):
 
 
 # Function to display the current time and update the slider
+
 def play_time():
     global current_song
     global paused
@@ -261,7 +262,7 @@ def play_time():
         "%M:%S", time.gmtime(current_song.data.duration)
     )
     converted_current_time = time.strftime("%M:%S", time.gmtime(current_time))
-    current_time += 1
+
 
     if int(my_slider.get()) == int(current_song.data.duration):
         time_start.config(text=f"{converted_current_time}")
