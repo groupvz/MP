@@ -36,7 +36,7 @@ def make_tale(
         music_title,
         music_artist,
         music_time,
-        music_add,
+        
     ):
         # Change background color and appearance when mouse enters
         music_info.config(background=leave_colo)
@@ -46,7 +46,7 @@ def make_tale(
         music_title.config(background=leave_colo)
         music_artist.config(background=leave_colo)
         music_time.config(background=leave_colo)
-        music_add.config(background=leave_colo)
+      
 
     # Function to handle mouse leaving event
     def on_leave(
@@ -58,7 +58,7 @@ def make_tale(
         music_title,
         music_artist,
         music_time,
-        music_add,
+       
     ):
         # Change background color and appearance when mouse leaves
         music_info.config(background=bg)
@@ -68,7 +68,7 @@ def make_tale(
         music_title.config(background=bg)
         music_artist.config(background=bg)
         music_time.config(background=bg)
-        music_add.config(background=bg)
+
 
     # Create frames and labels for displaying music information
     global current_song
@@ -116,28 +116,17 @@ def make_tale(
         return
 
     # Add button for each music entry
-    if la:
-        music_option = Button(music_info, text=" : ", fg=fg, bg=bg, height=1)
-        music_option.config(font=("", 25))
-        music_option.grid(row=0, column=3)
-        music_option.bind(
-            "<Button-1>", lambda event, music=music: show_listbox(event, music)
-        )
-    else:
-        music_option = Label(music_info, text=" 『+』 ", fg=fg, bg=bg, height=1)
-        music_option.config(font=("", 20))
-        music_option.grid(row=0, column=3)
-        music_option.bind(
-            "<Button-1>",
-            lambda event, current_song_info=music: add_song(event, current_song_info),
-        )
-        return
+
+    index.bind("<Button-1>", lambda event, music=music: play(event, music))
+ 
+
+        
 
     # Bind events for mouse entering and leaving
-    index.bind("<Button-1>", lambda event, music=music: play(event, music))
+    
     music_info.bind(
         "<Enter>",
-        lambda event, music_info=music_info, index_framee=index_framee, index=index, music_player_subtitle=music_player_subtitle, music_title=music_title, music_artist=music_artist, music_time=music_time, music_option=music_option: on_enter(
+        lambda event, music_info=music_info, index_framee=index_framee, index=index, music_player_subtitle=music_player_subtitle, music_title=music_title, music_artist=music_artist, music_time=music_time: on_enter(
             event,
             music_info,
             index_framee,
@@ -146,12 +135,12 @@ def make_tale(
             music_title,
             music_artist,
             music_time,
-            music_option,
+           
         ),
     )
     music_info.bind(
         "<Leave>",
-        lambda event, music_info=music_info, index_framee=index_framee, index=index, music_player_subtitle=music_player_subtitle, music_title=music_title, music_artist=music_artist, music_time=music_time, music_option=music_option: on_leave(
+        lambda event, music_info=music_info, index_framee=index_framee, index=index, music_player_subtitle=music_player_subtitle, music_title=music_title, music_artist=music_artist, music_time=music_time : on_leave(
             event,
             music_info,
             index_framee,
@@ -160,7 +149,7 @@ def make_tale(
             music_title,
             music_artist,
             music_time,
-            music_option,
+         
         ),
     )
 
@@ -335,32 +324,6 @@ def slide(x):
         pygame.mixer.music.play(loops=0, start=int(my_slider.get()))
     else:
         pygame.mixer.music.pause()
-
-
-# Function to show the listbox for options
-def show_listbox(event, song):
-    listbox_window = Toplevel(root)
-    listbox_window.title("Danh sách chọn")
-    listbox = Listbox(listbox_window)
-    listbox.pack()
-    items = ["Play next", "delete"]
-    for item in items:
-        listbox.insert(END, item)
-
-    def on_select(event, song):
-        selection = listbox.curselection()
-        if selection:
-            index = selection[0]
-            value = listbox.get(index)
-            if value == "Play next":
-                change(song)
-                listbox_window.destroy()
-            if value == "delete":
-                del_song(event, song)
-                listbox_window.destroy()
-
-    listbox.bind("<Button-1>", lambda event: on_select(event, song))
-
 
 # Create a linked list to hold the playlist
 listsong = DoublyLinkedList()
